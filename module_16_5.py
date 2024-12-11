@@ -23,9 +23,10 @@ def get_main_page(request: Request) -> HTMLResponse:
 
 
 @app.get("/user/{user_id}", response_class=HTMLResponse)
-def get_users(request: Request, user_id) -> HTMLResponse:
-    for user in users:
-        if user.id == user_id:
+def get_users(request: Request, user_id: int) -> HTMLResponse:
+    for i, u in enumerate(users):
+        if u.id == user_id:
+            user = users[i]
             return templates.TemplateResponse("users.html", {"request": request, "user": user})
 
 
